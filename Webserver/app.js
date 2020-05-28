@@ -22,12 +22,22 @@ var Server = NodeJs_https.createServer((Yeu_cau , Dap_ung)=>{
         if(Ma_so_Xu_ly=="Doc_Danh_sach_Nguoi_dung")
         {
             var du_lieu = {}
-            du_lieu.Danh_sach_Nguoi_dung = object.Danh_sach_Nguoi_dung
+            // du_lieu.Danh_sach_Nguoi_dung = object.Danh_sach_Nguoi_dung
             Chuoi_Kq = JSON.stringify(object.Danh_sach_Nguoi_dung);
             Dap_ung.setHeader("Access-Control-Allow-Origin", '*')
             Dap_ung.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
             Dap_ung.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
             Dap_ung.setHeader('Access-Control-Allow-Credentials', true);
+            Dap_ung.end(Chuoi_Kq);
+        }
+        else if(Ma_so_Xu_ly =="Them_Du_Lieu"){
+            var nguoiDung = JSON.parse(Chuoi_Nhan);
+            Dap_ung.setHeader("Access-Control-Allow-Origin", '*')
+            Dap_ung.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+            Dap_ung.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
+            Dap_ung.setHeader('Access-Control-Allow-Credentials', true);
+            var Kq = Database.Add_user('users', nguoiDung, nguoiDung.Email)
+            object.Danh_sach_Nguoi_dung.push(nguoiDung);
             Dap_ung.end(Chuoi_Kq);
         }
         else

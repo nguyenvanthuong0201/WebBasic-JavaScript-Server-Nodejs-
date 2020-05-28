@@ -15,6 +15,14 @@ class Xu_ly_nhan_vien {
       console.log(Loi);
     }
   }
+  async Add_user(Loai_doi_tuong, Doi_tuong,id) {
+    try {
+      var them = await admin.firestore().collection(Loai_doi_tuong).doc(id).set(Doi_tuong);
+      return them;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 var xuly=new Xu_ly_nhan_vien;
 module.exports = xuly;
